@@ -567,3 +567,45 @@ finally:
 #
 # assert "successful" in message.text
 # Теперь мы можем быть уверены, что при небольших задержках в работе сайта наши тесты продолжат работать стабильно. На каждый вызов команды find_element WebDriver будет ждать 5 секунд до появления элемента на странице прежде, чем выбросить исключение NoSuchElementException.
+
+#
+# Научился искать с ожиданием.
+# import time
+# import math
+# import pytest
+# from selenium import webdriver
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.common.by import By
+#
+#
+#
+# # number_s = ["236905","236904","236903","236899","236898","236897","236896","236895"]
+# answer_zero = []
+#
+# @pytest.fixture(scope="function")
+# def browser():
+#     print("\nstart browser for test..")
+#     browser = webdriver.Chrome()
+#     yield browser
+#     print("\nquit browser..")
+#     browser.quit()
+#
+# @pytest.mark.parametrize('number', ["236905","236904","236903","236899","236898","236897","236896","236895"])
+# def test_guest(browser, number):
+#     answer = math.log(int(time.time()))
+#     browser.implicitly_wait(10)
+#     link = f"https://stepik.org/lesson/{number}/step/1"
+#     browser.get(link)
+#     input1 = browser.find_element_by_tag_name("textarea")
+#     input1.send_keys(str(answer))
+#     button = WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.CLASS_NAME, "submit-submission")))
+#     button.click()
+#     output = WebDriverWait(browser, 5).until(EC.visibility_of_element_located((By.CLASS_NAME,"smart-hints__hint")))
+#     output.text
+#     try:
+#         assert "Correct!" in output.text
+#         pass
+#     except:
+#         answer_zero.append(output.text)
+#         print(output.text)
